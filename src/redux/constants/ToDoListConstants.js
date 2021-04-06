@@ -1,0 +1,8 @@
+export const GET_TASKS_API = "GET_TASKS_API";
+
+//------ Saga
+export const GET_TASK_API_SAGA = "GET_TASK_API_SAGA";
+export const ADD_TASK_API_SAGA = "ADD_TASK_API_SAGA";
+export const CHECK_TASK_API_SAGA = "CHECK_TASK_API_SAGA";
+export const DELETE_TASK_API_SAGA = "DELETE_TASK_API_SAGA";
+export const REJECT_TASK_API_SAGA = "REJECT_TASK_API_SAGA";
