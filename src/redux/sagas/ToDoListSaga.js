@@ -45,11 +45,19 @@ export function* trackGetTaskApiAction() {
  * Action saga add task tu api
  */
 function* addTaskApiAction(action) {
-  const { status } = yield call(toDoListService.addTaskApi, action.taskName);
-  if (status === STATUS_CODE.SUCCESS) {
-    yield put({
-      type: GET_TASK_API_SAGA,
-    });
+  const { taskName } = action.taskName;
+
+  try {
+    const { status } = yield call(toDoListService.addTaskApi, taskName);
+    if (status === STATUS_CODE.SUCCESS) {
+      yield put({
+        type: GET_TASK_API_SAGA,
+      });
+    } else {
+      console.log("error");
+    }
+  } catch (error) {
+    console.log(error);
   }
 }
 

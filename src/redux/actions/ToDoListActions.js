@@ -4,7 +4,7 @@ import Axios from "axios";
 export const getTaskListApi = () => {
   return async (dispatch) => {
     try {
-      let { data, status, ...res } = await Axios({
+      let { data, status } = await Axios({
         url: "http://svcy.myclass.vn/api/ToDoList/GetAllTask",
         method: "GET",
       });
@@ -21,7 +21,7 @@ export const getTaskListApi = () => {
 export const addTaskApi = (taskName) => {
   return async (dispatch) => {
     try {
-      let { data, status } = await Axios({
+      let { status } = await Axios({
         url: "http://svcy.myclass.vn/api/ToDoList/AddTask",
         method: "POST",
         data: { taskName },

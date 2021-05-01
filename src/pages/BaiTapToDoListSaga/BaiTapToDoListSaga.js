@@ -119,7 +119,7 @@ export default function BaiTapToDoListSaga(props) {
 
     setState({ ...state, values: newValues, errors: newErrors });
   };
-
+  console.log(state);
   const addTask = (e) => {
     e.preventDefault();
     dispatch({
