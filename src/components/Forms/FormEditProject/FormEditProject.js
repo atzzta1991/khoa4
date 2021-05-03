@@ -13,11 +13,6 @@ function FormEditProject(props) {
 
   const { values, handleChange, handleSubmit } = props;
 
-  //   const submitForm = (e) => {
-  //     e.preventDefault();
-  //     alert("submit edit");
-  //   };
-
   useEffect(() => {
     dispatch({ type: "SET_SUBMIT_EDIT_PROJECT", submitForm: handleSubmit });
     dispatch({ type: "GET_ALL_PROJECT_CATEGORY_SAGA" });

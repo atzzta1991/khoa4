@@ -1,6 +1,11 @@
 import { call, delay, put, select, takeLatest } from "@redux-saga/core/effects";
 import { cyberbugsService } from "../../../services/CyberbugsService";
-import { TOKEN, USER_LOGIN } from "../../../utils/constants/systemSettings";
+import { userService } from "../../../services/UserService";
+import {
+  STATUS_CODE,
+  TOKEN,
+  USER_LOGIN,
+} from "../../../utils/constants/systemSettings";
 import { USER_SIGNIN_API, US_LOGIN } from "../../constants/Cyberbugs/Cyberbugs";
 import { DISPLAY_LOADING, HIDE_LOADING } from "../../constants/LoadingConst";
 
@@ -35,4 +40,61 @@ function* signinSaga(action) {
 
 export function* watchSignIn() {
   yield takeLatest(USER_SIGNIN_API, signinSaga);
+}
+
+function* getUsersSaga(action) {
+  try {
+    const { data, status } = yield call(userService.getUsers, action.keyword);
+    if (status === STATUS_CODE.SUCCESS) {
+      yield put({
+        type: "GET_USER_SEARCH",
+        lstUserSearch: data.content,
+      });
+    }
+  } catch (error) {
+    console.log(error.response.data);
+  }
+}
+
+export function* watchGetUsers() {
+  yield takeLatest("GET_USER_API", getUsersSaga);
+}
+
+function* addUserProjectSaga(action) {
+  try {
+    const { data, status } = yield call(
+      userService.assignUserProject,
+      action.userProject
+    );
+
+    yield put({
+      type: "GET_ALL_PROJECT_SAGA",
+    });
+  } catch (error) {
+    console.log(error.response.data);
+  }
+}
+
+export function* watchAddUserProjectSaga() {
+  yield takeLatest("ADD_USER_PROJECT_API", addUserProjectSaga);
+}
+
+function* removeUserProjectSaga(action) {
+  try {
+    const { data, status } = yield call(
+      userService.removeUserProject,
+      action.userProject
+    );
+    console.log(data);
+
+    yield put({
+      type: "GET_ALL_PROJECT_SAGA",
+    });
+  } catch (error) {
+    console.log(error.response.data);
+  }
+}
+
+export function* watchRemoveUserProjectSaga() {
+  yield takeLatest("REMOVE_USER_PROJECT_API", removeUserProjectSaga);
 }

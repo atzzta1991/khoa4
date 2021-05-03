@@ -1,7 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Table, Space, Tag } from "antd";
+import {
+  Table,
+  Space,
+  Tag,
+  Popconfirm,
+  Avatar,
+  Popover,
+  Button,
+  AutoComplete,
+} from "antd";
 // import HtmlParser from "react-html-parser";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  CloseSquareOutlined,
+} from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import FormEditProject from "../../../components/Forms/FormEditProject/FormEditProject";
 
@@ -11,9 +24,13 @@ export default function ProjectManagement() {
     sortedInfo: null,
   });
 
+  const [value, setValue] = useState("");
+
   const projectList = useSelector(
     (state) => state.ProjectCyberbugsReducer.projectList
   );
+
+  const { userSearch } = useSelector((state) => state.UserCyberbugsReducer);
 
   const dispatch = useDispatch();
 
@@ -76,15 +93,6 @@ export default function ProjectManagement() {
       },
       sortDirections: ["descend"],
     },
-    // {
-    //   title: "description",
-    //   dataIndex: "description",
-    //   key: "description",
-    //   render: (text, record, index) => {
-    //     let jsxContent = HtmlParser(text);
-    //     return <>{jsxContent}</>;
-    //   },
-    // },
     {
       title: "categoryName",
       dataIndex: "categoryName",
@@ -117,6 +125,117 @@ export default function ProjectManagement() {
       sortDirections: ["ascend", "descend"],
     },
     {
+      title: "members",
+      key: "members",
+      render: (text, record, index) => {
+        return (
+          <div>
+            {record.members?.slice(0, 3).map((member, index) => {
+              return (
+                <Popover
+                  placement="top"
+                  title="members"
+                  content={() => {
+                    return (
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Id</th>
+                            <th>Avatar</th>
+                            <th>Name</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {record.members?.map((item, index) => {
+                            return (
+                              <tr key={index}>
+                                <td>{item.userId}</td>
+                                <td>
+                                  <img
+                                    src={item.avatar}
+                                    alt=""
+                                    width={30}
+                                    height={30}
+                                    style={{ borderRadius: 15 }}
+                                  />
+                                </td>
+                                <td>{item.name}</td>
+                                <td>
+                                  <button
+                                    className="btn btn-danger"
+                                    style={{ borderRadius: "50%" }}
+                                    onClick={() => {
+                                      dispatch({
+                                        type: "REMOVE_USER_PROJECT_API",
+                                        userProject: {
+                                          userId: item.userId,
+                                          projectId: record.id,
+                                        },
+                                      });
+                                    }}
+                                  >
+                                    X
+                                  </button>
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    );
+                  }}
+                >
+                  <Avatar src={member.avatar} key={index} />
+                </Popover>
+              );
+            })}
+            {record.members?.length > 3 && <Avatar>...</Avatar>}
+            <Popover
+              placement="bottom"
+              title={"Add User"}
+              content={() => {
+                return (
+                  <AutoComplete
+                    style={{ width: "100%" }}
+                    options={userSearch?.map((user, index) => {
+                      return {
+                        label: user.name,
+                        value: user.userId.toString(),
+                      };
+                    })}
+                    value={value}
+                    onChange={(text) => {
+                      setValue(text);
+                    }}
+                    onSelect={(valueSelect, option) => {
+                      setValue(option.label);
+                      dispatch({
+                        type: "ADD_USER_PROJECT_API",
+                        userProject: {
+                          projectId: record.id,
+                          userId: valueSelect,
+                        },
+                      });
+                    }}
+                    onSearch={(value) => {
+                      dispatch({
+                        type: "GET_USER_API",
+                        keyword: value,
+                      });
+                    }}
+                  />
+                );
+              }}
+              trigger={"click"}
+            >
+              <Button style={{ borderRadius: "50%" }}>+</Button>
+            </Popover>
+          </div>
+        );
+      },
+    },
+    {
       title: "Action",
       key: "action",
       render: (text, record, index) => {
@@ -137,14 +256,19 @@ export default function ProjectManagement() {
                 dispatch(actionEditProject);
               }}
             />
-            <DeleteOutlined
-              onClick={() => {
+            <Popconfirm
+              title="Are you sure to delete this project?"
+              onConfirm={() => {
                 dispatch({
                   type: "DELETE_PROJECT_SAGA",
                   projectId: record.id,
                 });
               }}
-            />
+              okText="Yes"
+              cancelText="No"
+            >
+              <DeleteOutlined />
+            </Popconfirm>
           </Space>
         );
       },

@@ -2,6 +2,7 @@ import { call, delay, put, select, takeLatest } from "@redux-saga/core/effects";
 import { cyberbugsService } from "../../../services/CyberbugsService";
 import { projectService } from "../../../services/ProjectService";
 import { STATUS_CODE } from "../../../utils/constants/systemSettings";
+import { notiFunction } from "../../../utils/Notification/notificationCyberbugs";
 import { DISPLAY_LOADING, HIDE_LOADING } from "../../constants/LoadingConst";
 
 function* createProjectSaga(action) {
@@ -50,18 +51,19 @@ export function* watchGetListProjectSaga() {
 }
 
 function* updateProjectSaga(action) {
+  console.log(action.projectUpdate);
   yield put({
     type: DISPLAY_LOADING,
   });
 
   yield delay(500);
   try {
-    const { data, status } = yield call(
+    const { status } = yield call(
       cyberbugsService.updateProject,
       action.projectUpdate
     );
+
     if (status === STATUS_CODE.SUCCESS) {
-      console.log(data);
       yield call(getListProjectSaga);
 
       yield put({
@@ -88,17 +90,25 @@ function* deleteProjectSaga(action) {
 
   yield delay(500);
   try {
-    const promise = yield call(projectService.deleteProject, action.projectId);
-    console.log(promise);
-    // if (status === STATUS_CODE.SUCCESS) {
-    //   yield call(getListProjectSaga);
+    const { status } = yield call(
+      projectService.deleteProject,
+      action.projectId
+    );
 
-    //   yield put({
-    //     type: "CLOSE_DRAWER",
-    //   });
-    // }
+    if (status === STATUS_CODE.SUCCESS) {
+      notiFunction("success", "Delete project successfully");
+
+      yield call(getListProjectSaga);
+
+      yield put({
+        type: "CLOSE_DRAWER",
+      });
+    } else {
+      notiFunction("error", "Delete project failed");
+    }
   } catch (error) {
     console.log(error);
+    notiFunction("error", "Delete project failed");
   }
 
   yield put({
