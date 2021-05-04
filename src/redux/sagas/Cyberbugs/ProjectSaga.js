@@ -119,3 +119,29 @@ function* deleteProjectSaga(action) {
 export function* watchDeleteProjectSaga() {
   yield takeLatest("DELETE_PROJECT_SAGA", deleteProjectSaga);
 }
+
+function* getProjectDetailSaga(action) {
+  yield put({
+    type: DISPLAY_LOADING,
+  });
+
+  yield delay(500);
+  try {
+    const { data } = yield call(
+      projectService.getProjectDetail,
+      action.projectId
+    );
+
+    yield put({ type: "PUT_PROJECT_DETAIL", projectDetail: data.content });
+  } catch (error) {
+    console.log(error);
+  }
+
+  yield put({
+    type: HIDE_LOADING,
+  });
+}
+
+export function* watchGetProjectDetailSaga() {
+  yield takeLatest("GET_PROJECT_DETAIL_SAGA", getProjectDetailSaga);
+}

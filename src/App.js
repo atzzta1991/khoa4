@@ -37,7 +37,6 @@ function App() {
       <LoadingComponent />
       <DrawerCyberbugs />
       <Switch>
-        <Route exact path="/" component={Home} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/about" component={About} />
@@ -48,7 +47,7 @@ function App() {
         <Route exact path="/todolistrfc" component={ToDoListRFC} />
         <Route exact path="/todolistredux" component={ToDoListRedux} />
         <Route exact path="/todolistsaga" component={BaiTapToDoListSaga} />
-        <CyberbugsTemplate exact path="/cyberbugs" Component={IndexCyberbugs} />
+        {/* <CyberbugsTemplate exact path="/cyberbugs" Component={IndexCyberbugs} /> */}
         <CyberbugsTemplate
           exact
           path="/createproject"
@@ -58,6 +57,12 @@ function App() {
           exact
           path="/projectmanagement"
           Component={ProjectManagement}
+        />
+        <CyberbugsTemplate exact path="/" Component={ProjectManagement} />
+        <CyberbugsTemplate
+          exact
+          path="/projectdetail/:projectId"
+          Component={IndexCyberbugs}
         />
         <Route path="*" component={PageNotFound} />
       </Switch>

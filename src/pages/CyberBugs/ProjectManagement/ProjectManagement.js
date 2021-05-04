@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Table,
   Space,
@@ -10,13 +10,10 @@ import {
   AutoComplete,
 } from "antd";
 // import HtmlParser from "react-html-parser";
-import {
-  EditOutlined,
-  DeleteOutlined,
-  CloseSquareOutlined,
-} from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import FormEditProject from "../../../components/Forms/FormEditProject/FormEditProject";
+import { NavLink } from "react-router-dom";
 
 export default function ProjectManagement() {
   const [state, setState] = useState({
@@ -25,6 +22,8 @@ export default function ProjectManagement() {
   });
 
   const [value, setValue] = useState("");
+
+  const searchRef = useRef(null);
 
   const projectList = useSelector(
     (state) => state.ProjectCyberbugsReducer.projectList
@@ -83,6 +82,9 @@ export default function ProjectManagement() {
       title: "projectName",
       dataIndex: "projectName",
       key: "projectName",
+      render: (text, record, index) => {
+        return <NavLink to={`/projectdetail/${record.id}`}>{text}</NavLink>;
+      },
       sorter: (item2, item1) => {
         let projectName1 = item1.projectname?.trim().toLowerCase();
         let projectName2 = item2.projectName?.trim().toLowerCase();
@@ -133,6 +135,7 @@ export default function ProjectManagement() {
             {record.members?.slice(0, 3).map((member, index) => {
               return (
                 <Popover
+                  key={index}
                   placement="top"
                   title="members"
                   content={() => {
@@ -186,7 +189,7 @@ export default function ProjectManagement() {
                     );
                   }}
                 >
-                  <Avatar src={member.avatar} key={index} />
+                  <Avatar src={member.avatar} />
                 </Popover>
               );
             })}
@@ -219,10 +222,15 @@ export default function ProjectManagement() {
                       });
                     }}
                     onSearch={(value) => {
-                      dispatch({
-                        type: "GET_USER_API",
-                        keyword: value,
-                      });
+                      if (searchRef.current) {
+                        clearTimeout(searchRef.current);
+                      }
+                      searchRef.current = setTimeout(() => {
+                        dispatch({
+                          type: "GET_USER_API",
+                          keyword: value,
+                        });
+                      }, 300);
                     }}
                   />
                 );

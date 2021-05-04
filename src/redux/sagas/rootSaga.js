@@ -18,5 +18,6 @@ export function* rootSaga() {
     ProjectSaga.watchGetListProjectSaga(),
     ProjectSaga.watchUpdateProjectSaga(),
     ProjectSaga.watchDeleteProjectSaga(),
+    ProjectSaga.watchGetProjectDetailSaga(),
   ]);
 }
