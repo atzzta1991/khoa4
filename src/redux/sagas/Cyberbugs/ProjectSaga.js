@@ -3,6 +3,10 @@ import { cyberbugsService } from "../../../services/CyberbugsService";
 import { projectService } from "../../../services/ProjectService";
 import { STATUS_CODE } from "../../../utils/constants/systemSettings";
 import { notiFunction } from "../../../utils/Notification/notificationCyberbugs";
+import {
+  GET_ALL_PROJECT,
+  GET_ALL_PROJECT_SAGA,
+} from "../../constants/Cyberbugs/ProjectConst";
 import { DISPLAY_LOADING, HIDE_LOADING } from "../../constants/LoadingConst";
 
 function* createProjectSaga(action) {
@@ -144,4 +148,24 @@ function* getProjectDetailSaga(action) {
 
 export function* watchGetProjectDetailSaga() {
   yield takeLatest("GET_PROJECT_DETAIL_SAGA", getProjectDetailSaga);
+}
+
+function* getAllProjectSaga() {
+  yield put({
+    type: DISPLAY_LOADING,
+  });
+  yield delay(300);
+  try {
+    const { data } = yield call(projectService.getAllProject);
+    yield put({ type: GET_ALL_PROJECT, arrProject: data.content });
+  } catch (error) {
+    console.log(error);
+  }
+  yield put({
+    type: HIDE_LOADING,
+  });
+}
+
+export function* watchGetAllProjectSaga() {
+  yield takeLatest(GET_ALL_PROJECT_SAGA, getAllProjectSaga);
 }

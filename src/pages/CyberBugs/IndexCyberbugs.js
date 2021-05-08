@@ -8,11 +8,10 @@ export default function IndexCyberbugs(props) {
   const { projectDetail } = useSelector((state) => state.ProjectReducer);
   const dispatch = useDispatch();
 
-  const { projectId } = props.match.params;
-
-  console.log("load page", projectDetail);
+  //console.log("load page", projectDetail);
 
   useEffect(() => {
+    const { projectId } = props.match.params;
     dispatch({
       type: "GET_PROJECT_DETAIL_SAGA",
       projectId,
@@ -21,10 +20,9 @@ export default function IndexCyberbugs(props) {
 
   return (
     <div className="main">
-      <HeaderMain />
-      <h3>Cyber Board</h3>
-      <InfoMain />
-      <ContentMain />
+      <HeaderMain projectDetail={projectDetail} />
+      <InfoMain projectDetail={projectDetail} />
+      <ContentMain projectDetail={projectDetail} />
     </div>
   );
 }

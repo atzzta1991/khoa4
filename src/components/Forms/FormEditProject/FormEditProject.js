@@ -11,7 +11,7 @@ function FormEditProject(props) {
 
   const dispatch = useDispatch();
 
-  const { values, handleChange, handleSubmit } = props;
+  const { values, handleChange, handleSubmit, setFieldValue } = props;
 
   useEffect(() => {
     dispatch({ type: "SET_SUBMIT_EDIT_PROJECT", submitForm: handleSubmit });
@@ -20,6 +20,7 @@ function FormEditProject(props) {
 
   const handleEditorChange = (e) => {
     console.log("Content", e.target.getContent());
+    setFieldValue("description", e.target.getContent());
   };
   return (
     <form className="container-fluid" onSubmit={handleSubmit}>
