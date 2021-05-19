@@ -18,10 +18,11 @@ import LoginCyberBugs from "./pages/CyberBugs/LoginCyberBugs/LoginCyberBugs";
 import { useDispatch } from "react-redux";
 import { ADD_HISTORY } from "./redux/constants/Cyberbugs/Cyberbugs";
 import CyberbugsTemplate from "./templates/HomeTemplate/CyberbugsTemplate";
-import IndexCyberbugs from "./pages/CyberBugs/IndexCyberbugs";
+import IndexCyberbugs from "./pages/CyberBugs/ProjectDetail/IndexCyberbugs";
 import CreateProject from "./pages/CyberBugs/CreateProject/CreateProject";
 import ProjectManagement from "./pages/CyberBugs/ProjectManagement/ProjectManagement";
 import DrawerCyberbugs from "./HOC/Cyberbugs/DrawerCyberbugs/DrawerCyberbugs";
+import UserManagement from "./pages/CyberBugs/UserManagement";
 
 function App() {
   const history = useHistory();
@@ -59,6 +60,11 @@ function App() {
           Component={ProjectManagement}
         />
         <CyberbugsTemplate exact path="/" Component={ProjectManagement} />
+        <CyberbugsTemplate
+          exact
+          path="/usermanagement"
+          Component={UserManagement}
+        />
         <CyberbugsTemplate
           exact
           path="/projectdetail/:projectId"

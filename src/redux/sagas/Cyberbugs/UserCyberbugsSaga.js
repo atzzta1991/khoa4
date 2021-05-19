@@ -8,6 +8,10 @@ import {
 } from "../../../utils/constants/systemSettings";
 import { USER_SIGNIN_API, US_LOGIN } from "../../constants/Cyberbugs/Cyberbugs";
 import { DISPLAY_LOADING, HIDE_LOADING } from "../../constants/LoadingConst";
+import {
+  GET_USER_BY_PROJECT_ID,
+  GET_USER_BY_PROJECT_ID_SAGA,
+} from "../../constants/Cyberbugs/UserConst";
 
 function* signinSaga(action) {
   yield put({
@@ -62,10 +66,7 @@ export function* watchGetUsers() {
 
 function* addUserProjectSaga(action) {
   try {
-    const { data, status } = yield call(
-      userService.assignUserProject,
-      action.userProject
-    );
+    yield call(userService.assignUserProject, action.userProject);
 
     yield put({
       type: "GET_ALL_PROJECT_SAGA",
@@ -81,7 +82,7 @@ export function* watchAddUserProjectSaga() {
 
 function* removeUserProjectSaga(action) {
   try {
-    const { data, status } = yield call(
+    const { data } = yield call(
       userService.removeUserProject,
       action.userProject
     );
@@ -97,4 +98,33 @@ function* removeUserProjectSaga(action) {
 
 export function* watchRemoveUserProjectSaga() {
   yield takeLatest("REMOVE_USER_PROJECT_API", removeUserProjectSaga);
+}
+
+function* getUserByProjectIdSaga(action) {
+  try {
+    const { data, status } = yield call(
+      userService.getUserByProjectId,
+      action.idProject
+    );
+
+    if (status === STATUS_CODE.SUCCESS) {
+      yield put({
+        type: GET_USER_BY_PROJECT_ID,
+        arrUser: data.content,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    console.log(error.response.data);
+    if (error.response.data.statusCode === STATUS_CODE.NOT_FOUND) {
+      yield put({
+        type: GET_USER_BY_PROJECT_ID,
+        arrUser: [],
+      });
+    }
+  }
+}
+
+export function* watchGetUserByProjectIdSaga() {
+  yield takeLatest(GET_USER_BY_PROJECT_ID_SAGA, getUserByProjectIdSaga);
 }

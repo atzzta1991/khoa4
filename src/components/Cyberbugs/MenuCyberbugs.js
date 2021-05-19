@@ -1,3 +1,4 @@
+import { UserOutlined } from "@ant-design/icons";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
@@ -32,6 +33,16 @@ export default function MenuCyberbugs() {
             activeClassName="active font-weight-bold"
           >
             Project Management
+          </NavLink>
+        </div>
+        <div>
+          <UserOutlined />
+          <NavLink
+            className="text-dark"
+            to="/usermanagement"
+            activeClassName="active font-weight-bold"
+          >
+            User Management
           </NavLink>
         </div>
         <div>

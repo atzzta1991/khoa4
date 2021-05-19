@@ -6,6 +6,9 @@ import * as ProjectSaga from "./Cyberbugs/ProjectSaga";
 import * as TaskTypeSaga from "./Cyberbugs/TaskTypeSaga";
 import * as PrioritySaga from "./Cyberbugs/PrioritySaga";
 import * as TaskSaga from "./Cyberbugs/TaskSaga";
+import * as StatusSaga from "./Cyberbugs/StatusSaga";
+import * as CommentSaga from "./Cyberbugs/CommentSaga";
+
 export function* rootSaga() {
   yield all([
     ToDoListSaga.trackGetTaskApiAction(),
@@ -16,6 +19,7 @@ export function* rootSaga() {
     UserCyberbugsSaga.watchGetUsers(),
     UserCyberbugsSaga.watchAddUserProjectSaga(),
     UserCyberbugsSaga.watchRemoveUserProjectSaga(),
+    UserCyberbugsSaga.watchGetUserByProjectIdSaga(),
 
     ProjectCategorySaga.watchGetAllProjectCategory(),
     ProjectSaga.watchCreateProjectSaga(),
@@ -30,5 +34,15 @@ export function* rootSaga() {
     PrioritySaga.watchGetAllPrioritySaga(),
 
     TaskSaga.watchCreateTaskSaga(),
+    TaskSaga.watchGetTaskDetailSaga(),
+    TaskSaga.watchUpdateTaskStatusSaga(),
+    TaskSaga.watchHandleChangePostApi(),
+
+    StatusSaga.watchGetAllStatusSaga(),
+
+    CommentSaga.watchGetAllCommentsSaga(),
+    CommentSaga.watchInsertCommentSaga(),
+    CommentSaga.watchDeleteCommentSaga(),
+    CommentSaga.watchUpdateCommentSaga(),
   ]);
 }

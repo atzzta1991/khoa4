@@ -5,7 +5,9 @@ import React, { useEffect, useState } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { GET_ALL_PRIORITY_SAGA } from "../../../redux/constants/Cyberbugs/PriorityConst";
 import { GET_ALL_PROJECT_SAGA } from "../../../redux/constants/Cyberbugs/ProjectConst";
+import { GET_ALL_STATUS_SAGA } from "../../../redux/constants/Cyberbugs/StatusConst";
 import { GET_ALL_TASK_TYPE_SAGA } from "../../../redux/constants/Cyberbugs/TaskTypeConst";
+import { GET_USER_BY_PROJECT_ID_SAGA } from "../../../redux/constants/Cyberbugs/UserConst";
 
 const { Option } = Select;
 const children = [];
@@ -22,9 +24,10 @@ function FormCreateTask(props) {
   const { arrProject } = useSelector((state) => state.ProjectCyberbugsReducer);
   const { arrTaskType } = useSelector((state) => state.TaskTypeReducer);
   const { arrPriority } = useSelector((state) => state.PriorityReducer);
-  const { userSearch } = useSelector((state) => state.UserCyberbugsReducer);
+  const { arrStatus } = useSelector((state) => state.StatusReducer);
+  const { arrUser } = useSelector((state) => state.UserCyberbugsReducer);
 
-  const userOptions = userSearch.map((user) => {
+  const userOptions = arrUser.map((user) => {
     return { value: user.userId, label: user.name };
   });
 
@@ -36,10 +39,12 @@ function FormCreateTask(props) {
     dispatch({ type: GET_ALL_PROJECT_SAGA });
     dispatch({ type: GET_ALL_TASK_TYPE_SAGA });
     dispatch({ type: GET_ALL_PRIORITY_SAGA });
+    dispatch({ type: GET_ALL_STATUS_SAGA });
+    dispatch({ type: "SET_SUBMIT_CREATE_TASK", submitForm: handleSubmit });
   }, []);
 
   const handleEditorChange = (e) => {
-    setFieldValue("description", e.target.value);
+    setFieldValue("description", e.target.getContent());
   };
 
   return (
@@ -54,11 +59,34 @@ function FormCreateTask(props) {
         />
       </div>
       <div className="form-group">
+        <p>Status</p>
+        <select
+          name="statusId"
+          className="form-control"
+          onChange={handleChange}
+        >
+          {arrStatus.map((status, index) => {
+            return (
+              <option key={index} value={status.statusId}>
+                {status.statusName}
+              </option>
+            );
+          })}
+        </select>
+      </div>
+      <div className="form-group">
         <p>Project</p>
         <select
           name="projectId"
           className="form-control"
-          onChange={handleChange}
+          onChange={(e) => {
+            let { value } = e.target;
+            dispatch({
+              type: GET_USER_BY_PROJECT_ID_SAGA,
+              idProject: value,
+            });
+            setFieldValue("projectId", value);
+          }}
         >
           {arrProject.map((project, index) => {
             return (
@@ -115,7 +143,9 @@ function FormCreateTask(props) {
               size={size}
               options={userOptions}
               placeholder="Please select"
-              onChange={() => {}}
+              onChange={(value) => {
+                setFieldValue("listUserAsign", value);
+              }}
               optionFilterProp="label"
               onSearch={(value) => {
                 dispatch({
@@ -219,24 +249,33 @@ function FormCreateTask(props) {
           onChange={handleEditorChange}
         />
       </div>
-      <button type="submit">Submit</button>
+      {/* <button type="submit">Submit</button> */}
     </form>
   );
 }
 
 const formCreateTask = withFormik({
-  // enableReinitialize: {},
+  enableReinitialize: true,
   mapPropsToValues: (props) => {
+    const { arrStatus, arrProject, arrTaskType, arrPriority } = props;
+
+    // if (arrProject.length > 0) {
+    //   props.dispatch({
+    //     type: GET_USER_BY_PROJECT_ID_SAGA,
+    //     idProject: arrProject[0]?.id,
+    //   });
+    // }
+
     return {
       taskName: "",
       description: "string",
-      statusId: "1",
+      statusId: arrStatus[0]?.statusId,
       originalEstimate: 0,
       timeTrackingSpent: 0,
       timeTrackingRemaining: 0,
-      projectId: 0,
-      typeId: 1,
-      priorityId: 1,
+      projectId: arrProject[0]?.id,
+      typeId: arrTaskType[0]?.id,
+      priorityId: arrPriority[0]?.priorityId,
       listUserAsign: [],
     };
   },
@@ -248,4 +287,13 @@ const formCreateTask = withFormik({
   },
 })(FormCreateTask);
 
-export default connect()(formCreateTask);
+const mapStateToProps = (state) => {
+  return {
+    arrProject: state.ProjectCyberbugsReducer.arrProject,
+    arrTaskType: state.TaskTypeReducer.arrTaskType,
+    arrPriority: state.PriorityReducer.arrPriority,
+    arrStatus: state.StatusReducer.arrStatus,
+  };
+};
+
+export default connect(mapStateToProps)(formCreateTask);

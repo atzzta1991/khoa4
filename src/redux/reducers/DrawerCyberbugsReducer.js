@@ -32,6 +32,9 @@ export const DrawerCyberbugsReducer = (state = initialState, action) => {
       state.ComponentContentDrawer = action.Component;
       return { ...state };
     }
+    case "SET_SUBMIT_CREATE_TASK": {
+      return { ...state, callBackSubmit: action.submitForm };
+    }
     default:
       return { ...state };
   }

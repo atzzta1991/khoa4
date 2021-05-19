@@ -1,0 +1,151 @@
+Date : 2021-05-11 16:11:00
+Directory : /Users/trieu.nhtvn/khoa4/src
+Total : 84 files,  4673 codes, 124 comments, 612 blanks, all 5409 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JavaScript |         77 |      3,761 |         50 |        401 |      4,212 |
+| CSS        |          6 |        911 |         74 |        211 |      1,196 |
+| XML        |          1 |          1 |          0 |          0 |          1 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                               | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                  |         84 |      4,673 |        124 |        612 |      5,409 |
+| HOC                                                                                                |          1 |         42 |          3 |          3 |         48 |
+| HOC/Cyberbugs                                                                                      |          1 |         42 |          3 |          3 |         48 |
+| HOC/Cyberbugs/DrawerCyberbugs                                                                      |          1 |         42 |          3 |          3 |         48 |
+| components                                                                                         |         12 |      1,122 |         15 |         56 |      1,193 |
+| components/Cyberbugs                                                                               |          6 |        564 |          9 |         28 |        601 |
+| components/Cyberbugs/Main                                                                          |          3 |        117 |          0 |          9 |        126 |
+| components/Cyberbugs/Modal                                                                         |          1 |        319 |          9 |         13 |        341 |
+| components/Forms                                                                                   |          2 |        394 |          6 |         24 |        424 |
+| components/Forms/FormCreateTask                                                                    |          1 |        280 |          6 |         14 |        300 |
+| components/Forms/FormEditProject                                                                   |          1 |        114 |          0 |         10 |        124 |
+| components/GlobalSetting                                                                           |          2 |         30 |          0 |          2 |         32 |
+| components/GlobalSetting/LoadingComponent                                                          |          2 |         30 |          0 |          2 |         32 |
+| components/Home                                                                                    |          2 |        134 |          0 |          2 |        136 |
+| pages                                                                                              |         17 |      1,836 |         42 |        238 |      2,116 |
+| pages/About                                                                                        |          1 |          4 |          0 |          2 |          6 |
+| pages/BaiTapToDoListSaga                                                                           |          2 |        427 |         10 |         72 |        509 |
+| pages/Contact                                                                                      |          1 |          4 |          0 |          2 |          6 |
+| pages/CyberBugs                                                                                    |          4 |        498 |          3 |         37 |        538 |
+| pages/CyberBugs/CreateProject                                                                      |          1 |         97 |          0 |          8 |        105 |
+| pages/CyberBugs/LoginCyberBugs                                                                     |          1 |         91 |          0 |          9 |        100 |
+| pages/CyberBugs/ProjectDetail                                                                      |          1 |         23 |          1 |          5 |         29 |
+| pages/CyberBugs/ProjectManagement                                                                  |          1 |        287 |          2 |         15 |        304 |
+| pages/Detail                                                                                       |          1 |         10 |          0 |          2 |         12 |
+| pages/Home                                                                                         |          1 |         13 |          0 |          2 |         15 |
+| pages/Login                                                                                        |          1 |         71 |          5 |         11 |         87 |
+| pages/PageNotFound                                                                                 |          1 |          4 |          0 |          2 |          6 |
+| pages/Profile                                                                                      |          1 |         10 |          0 |          2 |         12 |
+| pages/ToDoList                                                                                     |          4 |        795 |         24 |        106 |        925 |
+| redux                                                                                              |         33 |        928 |         13 |        162 |      1,103 |
+| redux/actions                                                                                      |          2 |         86 |          0 |         13 |         99 |
+| redux/constants                                                                                    |          9 |         27 |          1 |         16 |         44 |
+| redux/constants/Cyberbugs                                                                          |          7 |         19 |          0 |         13 |         32 |
+| redux/reducers                                                                                     |         12 |        251 |          0 |         37 |        288 |
+| redux/sagas                                                                                        |          9 |        527 |         12 |         90 |        629 |
+| redux/sagas/Cyberbugs                                                                              |          7 |        424 |          2 |         70 |        496 |
+| services                                                                                           |          9 |        180 |          0 |         38 |        218 |
+| templates                                                                                          |          2 |         70 |          0 |          7 |         77 |
+| templates/HomeTemplate                                                                             |          2 |         70 |          0 |          7 |         77 |
+| utils                                                                                              |          2 |         16 |          0 |          5 |         21 |
+| utils/Notification                                                                                 |          1 |          7 |          0 |          2 |          9 |
+| utils/constants                                                                                    |          1 |          9 |          0 |          3 |         12 |
++----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                           | language   | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| /Users/trieu.nhtvn/khoa4/src/App.css                                                               | CSS        |          1 |         39 |          1 |         41 |
+| /Users/trieu.nhtvn/khoa4/src/App.js                                                                | JavaScript |         70 |          1 |          3 |         74 |
+| /Users/trieu.nhtvn/khoa4/src/App.test.js                                                           | JavaScript |          7 |          0 |          2 |          9 |
+| /Users/trieu.nhtvn/khoa4/src/HOC/Cyberbugs/DrawerCyberbugs/DrawerCyberbugs.js                      | JavaScript |         42 |          3 |          3 |         48 |
+| /Users/trieu.nhtvn/khoa4/src/components/Cyberbugs/Main/ContentMain.js                              | JavaScript |         66 |          0 |          4 |         70 |
+| /Users/trieu.nhtvn/khoa4/src/components/Cyberbugs/Main/HeaderMain.js                               | JavaScript |         16 |          0 |          2 |         18 |
+| /Users/trieu.nhtvn/khoa4/src/components/Cyberbugs/Main/InfoMain.js                                 | JavaScript |         35 |          0 |          3 |         38 |
+| /Users/trieu.nhtvn/khoa4/src/components/Cyberbugs/MenuCyberbugs.js                                 | JavaScript |         71 |          0 |          2 |         73 |
+| /Users/trieu.nhtvn/khoa4/src/components/Cyberbugs/Modal/ModalCyberbugs.js                          | JavaScript |        319 |          9 |         13 |        341 |
+| /Users/trieu.nhtvn/khoa4/src/components/Cyberbugs/SidebarCyberbugs.js                              | JavaScript |         57 |          0 |          4 |         61 |
+| /Users/trieu.nhtvn/khoa4/src/components/Forms/FormCreateTask/FormCreateTask.js                     | JavaScript |        280 |          6 |         14 |        300 |
+| /Users/trieu.nhtvn/khoa4/src/components/Forms/FormEditProject/FormEditProject.js                   | JavaScript |        114 |          0 |         10 |        124 |
+| /Users/trieu.nhtvn/khoa4/src/components/GlobalSetting/LoadingComponent/LoadingComponent.js         | JavaScript |         18 |          0 |          2 |         20 |
+| /Users/trieu.nhtvn/khoa4/src/components/GlobalSetting/LoadingComponent/LoadingComponent.module.css | CSS        |         12 |          0 |          0 |         12 |
+| /Users/trieu.nhtvn/khoa4/src/components/Home/Header.css                                            | CSS        |          4 |          0 |          0 |          4 |
+| /Users/trieu.nhtvn/khoa4/src/components/Home/Header.js                                             | JavaScript |        130 |          0 |          2 |        132 |
+| /Users/trieu.nhtvn/khoa4/src/index.css                                                             | CSS        |        370 |          4 |         91 |        465 |
+| /Users/trieu.nhtvn/khoa4/src/index.js                                                              | JavaScript |         17 |          3 |          3 |         23 |
+| /Users/trieu.nhtvn/khoa4/src/logo.svg                                                              | XML        |          1 |          0 |          0 |          1 |
+| /Users/trieu.nhtvn/khoa4/src/pages/About/About.js                                                  | JavaScript |          4 |          0 |          2 |          6 |
+| /Users/trieu.nhtvn/khoa4/src/pages/BaiTapToDoListSaga/BaiTapToDoListSaga.js                        | JavaScript |        160 |          0 |         12 |        172 |
+| /Users/trieu.nhtvn/khoa4/src/pages/BaiTapToDoListSaga/ToDoList.css                                 | CSS        |        267 |         10 |         60 |        337 |
+| /Users/trieu.nhtvn/khoa4/src/pages/Contact/Contact.js                                              | JavaScript |          4 |          0 |          2 |          6 |
+| /Users/trieu.nhtvn/khoa4/src/pages/CyberBugs/CreateProject/CreateProject.js                        | JavaScript |         97 |          0 |          8 |        105 |
+| /Users/trieu.nhtvn/khoa4/src/pages/CyberBugs/LoginCyberBugs/LoginCyberBugs.js                      | JavaScript |         91 |          0 |          9 |        100 |
+| /Users/trieu.nhtvn/khoa4/src/pages/CyberBugs/ProjectDetail/IndexCyberbugs.js                       | JavaScript |         23 |          1 |          5 |         29 |
+| /Users/trieu.nhtvn/khoa4/src/pages/CyberBugs/ProjectManagement/ProjectManagement.js                | JavaScript |        287 |          2 |         15 |        304 |
+| /Users/trieu.nhtvn/khoa4/src/pages/Detail/Detail.js                                                | JavaScript |         10 |          0 |          2 |         12 |
+| /Users/trieu.nhtvn/khoa4/src/pages/Home/Home.js                                                    | JavaScript |         13 |          0 |          2 |         15 |
+| /Users/trieu.nhtvn/khoa4/src/pages/Login/Login.js                                                  | JavaScript |         71 |          5 |         11 |         87 |
+| /Users/trieu.nhtvn/khoa4/src/pages/PageNotFound/PageNotFound.js                                    | JavaScript |          4 |          0 |          2 |          6 |
+| /Users/trieu.nhtvn/khoa4/src/pages/Profile/Profile.js                                              | JavaScript |         10 |          0 |          2 |         12 |
+| /Users/trieu.nhtvn/khoa4/src/pages/ToDoList/ToDoList.css                                           | CSS        |        257 |         21 |         59 |        337 |
+| /Users/trieu.nhtvn/khoa4/src/pages/ToDoList/ToDoList.js                                            | JavaScript |        196 |          1 |         18 |        215 |
+| /Users/trieu.nhtvn/khoa4/src/pages/ToDoList/ToDoListRFC.js                                         | JavaScript |        194 |          1 |         17 |        212 |
+| /Users/trieu.nhtvn/khoa4/src/pages/ToDoList/ToDoListRedux.js                                       | JavaScript |        148 |          1 |         12 |        161 |
+| /Users/trieu.nhtvn/khoa4/src/redux/actions/CyberbugActions.js                                      | JavaScript |          8 |          0 |          2 |         10 |
+| /Users/trieu.nhtvn/khoa4/src/redux/actions/ToDoListActions.js                                      | JavaScript |         78 |          0 |         11 |         89 |
+| /Users/trieu.nhtvn/khoa4/src/redux/configStore.js                                                  | JavaScript |         37 |          0 |          6 |         43 |
+| /Users/trieu.nhtvn/khoa4/src/redux/constants/Cyberbugs/Cyberbugs.js                                | JavaScript |          5 |          0 |          5 |         10 |
+| /Users/trieu.nhtvn/khoa4/src/redux/constants/Cyberbugs/PriorityConst.js                            | JavaScript |          2 |          0 |          1 |          3 |
+| /Users/trieu.nhtvn/khoa4/src/redux/constants/Cyberbugs/ProjectConst.js                             | JavaScript |          2 |          0 |          1 |          3 |
+| /Users/trieu.nhtvn/khoa4/src/redux/constants/Cyberbugs/StatusConst.js                              | JavaScript |          2 |          0 |          1 |          3 |
+| /Users/trieu.nhtvn/khoa4/src/redux/constants/Cyberbugs/TaskConst.js                                | JavaScript |          4 |          0 |          3 |          7 |
+| /Users/trieu.nhtvn/khoa4/src/redux/constants/Cyberbugs/TaskTypeConst.js                            | JavaScript |          2 |          0 |          1 |          3 |
+| /Users/trieu.nhtvn/khoa4/src/redux/constants/Cyberbugs/UserConst.js                                | JavaScript |          2 |          0 |          1 |          3 |
+| /Users/trieu.nhtvn/khoa4/src/redux/constants/LoadingConst.js                                       | JavaScript |          2 |          0 |          1 |          3 |
+| /Users/trieu.nhtvn/khoa4/src/redux/constants/ToDoListConstants.js                                  | JavaScript |          6 |          1 |          2 |          9 |
+| /Users/trieu.nhtvn/khoa4/src/redux/reducers/DrawerCyberbugsReducer.js                              | JavaScript |         39 |          0 |          3 |         42 |
+| /Users/trieu.nhtvn/khoa4/src/redux/reducers/HistoryReducer.js                                      | JavaScript |         14 |          0 |          3 |         17 |
+| /Users/trieu.nhtvn/khoa4/src/redux/reducers/LoadingReducer.js                                      | JavaScript |         18 |          0 |          3 |         21 |
+| /Users/trieu.nhtvn/khoa4/src/redux/reducers/PriorityReducer.js                                     | JavaScript |         12 |          0 |          4 |         16 |
+| /Users/trieu.nhtvn/khoa4/src/redux/reducers/ProjectCategoryReducer.js                              | JavaScript |         14 |          0 |          3 |         17 |
+| /Users/trieu.nhtvn/khoa4/src/redux/reducers/ProjectCyberbugsReducer.js                             | JavaScript |         18 |          0 |          3 |         21 |
+| /Users/trieu.nhtvn/khoa4/src/redux/reducers/ProjectReducer.js                                      | JavaScript |         23 |          0 |          2 |         25 |
+| /Users/trieu.nhtvn/khoa4/src/redux/reducers/StatusReducer.js                                       | JavaScript |         12 |          0 |          2 |         14 |
+| /Users/trieu.nhtvn/khoa4/src/redux/reducers/TaskReducer.js                                         | JavaScript |         46 |          0 |          3 |         49 |
+| /Users/trieu.nhtvn/khoa4/src/redux/reducers/TaskTypeReducer.js                                     | JavaScript |         12 |          0 |          4 |         16 |
+| /Users/trieu.nhtvn/khoa4/src/redux/reducers/ToDoListReducers.js                                    | JavaScript |         14 |          0 |          3 |         17 |
+| /Users/trieu.nhtvn/khoa4/src/redux/reducers/UserCyberbugsReducer.js                                | JavaScript |         29 |          0 |          4 |         33 |
+| /Users/trieu.nhtvn/khoa4/src/redux/sagas/Cyberbugs/PrioritySaga.js                                 | JavaScript |         20 |          0 |          3 |         23 |
+| /Users/trieu.nhtvn/khoa4/src/redux/sagas/Cyberbugs/ProjectCategorySaga.js                          | JavaScript |         20 |          0 |          3 |         23 |
+| /Users/trieu.nhtvn/khoa4/src/redux/sagas/Cyberbugs/ProjectSaga.js                                  | JavaScript |        150 |          0 |         28 |        178 |
+| /Users/trieu.nhtvn/khoa4/src/redux/sagas/Cyberbugs/StatusSaga.js                                   | JavaScript |         21 |          0 |          4 |         25 |
+| /Users/trieu.nhtvn/khoa4/src/redux/sagas/Cyberbugs/TaskSaga.js                                     | JavaScript |         79 |          2 |         11 |         92 |
+| /Users/trieu.nhtvn/khoa4/src/redux/sagas/Cyberbugs/TaskTypeSaga.js                                 | JavaScript |         20 |          0 |          4 |         24 |
+| /Users/trieu.nhtvn/khoa4/src/redux/sagas/Cyberbugs/UserCyberbugsSaga.js                            | JavaScript |        114 |          0 |         17 |        131 |
+| /Users/trieu.nhtvn/khoa4/src/redux/sagas/ToDoListSaga.js                                           | JavaScript |         69 |         10 |         12 |         91 |
+| /Users/trieu.nhtvn/khoa4/src/redux/sagas/rootSaga.js                                               | JavaScript |         34 |          0 |          8 |         42 |
+| /Users/trieu.nhtvn/khoa4/src/reportWebVitals.js                                                    | JavaScript |         12 |          0 |          2 |         14 |
+| /Users/trieu.nhtvn/khoa4/src/services/CyberbugsService.js                                          | JavaScript |         47 |          0 |          2 |         49 |
+| /Users/trieu.nhtvn/khoa4/src/services/PriorityService.js                                           | JavaScript |          7 |          0 |          2 |          9 |
+| /Users/trieu.nhtvn/khoa4/src/services/ProjectService.js                                            | JavaScript |         13 |          0 |          5 |         18 |
+| /Users/trieu.nhtvn/khoa4/src/services/StatusService.js                                             | JavaScript |          7 |          0 |          3 |         10 |
+| /Users/trieu.nhtvn/khoa4/src/services/TaskService.js                                               | JavaScript |         13 |          0 |          5 |         18 |
+| /Users/trieu.nhtvn/khoa4/src/services/TaskTypeService.js                                           | JavaScript |          7 |          0 |          3 |         10 |
+| /Users/trieu.nhtvn/khoa4/src/services/ToDoListService.js                                           | JavaScript |         36 |          0 |          7 |         43 |
+| /Users/trieu.nhtvn/khoa4/src/services/UserService.js                                               | JavaScript |         16 |          0 |          6 |         22 |
+| /Users/trieu.nhtvn/khoa4/src/services/baseService.js                                               | JavaScript |         34 |          0 |          5 |         39 |
+| /Users/trieu.nhtvn/khoa4/src/setupTests.js                                                         | JavaScript |          1 |          4 |          1 |          6 |
+| /Users/trieu.nhtvn/khoa4/src/templates/HomeTemplate/CyberbugsTemplate.js                           | JavaScript |         26 |          0 |          2 |         28 |
+| /Users/trieu.nhtvn/khoa4/src/templates/HomeTemplate/UserLoginTemplate.js                           | JavaScript |         44 |          0 |          5 |         49 |
+| /Users/trieu.nhtvn/khoa4/src/utils/Notification/notificationCyberbugs.js                           | JavaScript |          7 |          0 |          2 |          9 |
+| /Users/trieu.nhtvn/khoa4/src/utils/constants/systemSettings.js                                     | JavaScript |          9 |          0 |          3 |         12 |
+| Total                                                                                              |            |      4,673 |        124 |        612 |      5,409 |
++----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
