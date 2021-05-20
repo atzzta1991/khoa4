@@ -1,34 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Input, Button, Space } from "antd";
 import Highlighter from "react-highlight-words";
-import { SearchOutlined } from "@ant-design/icons";
-
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-  },
-  {
-    key: "2",
-    name: "Joe Black",
-    age: 42,
-    address: "London No. 1 Lake Park",
-  },
-  {
-    key: "3",
-    name: "Jim Green",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-  },
-  {
-    key: "4",
-    name: "Jim Red",
-    age: 32,
-    address: "London No. 2 Lake Park",
-  },
-];
+import {
+  DeleteOutlined,
+  EditOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  EDIT_USER,
+  GET_USER_API,
+} from "../../redux/constants/Cyberbugs/UserConst";
+import FormCreateUser from "../../components/Forms/FormCreateUser/FormCreateUser";
+import FormEditUser from "../../components/Forms/FormEditUser.js/FormEditUser";
 
 export default function UserManagement() {
   const [state, setState] = useState({
@@ -36,6 +20,24 @@ export default function UserManagement() {
     searchedColumn: "",
   });
 
+  const { userSearch } = useSelector((state) => state.UserCyberbugsReducer);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: GET_USER_API, keyword: "" });
+  }, [dispatch]);
+
+  const userData = userSearch.map((user, index) => {
+    return {
+      tableIndex: index + 1,
+      email: user.email,
+      name: user.name,
+      phone: user.phoneNumber,
+      id: user.userId,
+    };
+  });
+
+  console.log(userData);
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({
       setSelectedKeys,
@@ -132,6 +134,12 @@ export default function UserManagement() {
 
   const columns = [
     {
+      title: "Index",
+      dataIndex: "tableIndex",
+      key: "tableIndex",
+      width: "10%",
+    },
+    {
       title: "Email",
       dataIndex: "email",
       key: "email",
@@ -142,7 +150,7 @@ export default function UserManagement() {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      width: "30%",
+      width: "25%",
       ...getColumnSearchProps("name"),
     },
     {
@@ -154,18 +162,65 @@ export default function UserManagement() {
     },
     {
       title: "Action",
-      //   dataIndex: "address",
-      //   key: "address",
-      //   ...getColumnSearchProps("address"),
+      width: "15%",
+      render: (text, record, index) => {
+        return (
+          // Edit and Delete
+          <Space size="middle">
+            <EditOutlined
+              style={{ color: "orange", cursor: "pointer" }}
+              onClick={() => {
+                dispatch({
+                  type: EDIT_USER,
+                  userEdit: {
+                    id: record.id,
+                    passWord: "",
+                    email: record.email,
+                    name: record.name,
+                    phoneNumber: record.phone,
+                  },
+                });
+
+                dispatch({
+                  type: "OPEN_FORM_EDIT_USER",
+                  title: "Edit User",
+                  Component: <FormEditUser />,
+                });
+              }}
+            />
+            <DeleteOutlined style={{ color: "red", cursor: "pointer" }} />
+          </Space>
+        );
+      },
     },
   ];
   return (
     <div className="container">
-      <div style={{ marginTop: "100px" }} className="row ml-3">
-        <button className="btn btn-primary">Create User</button>
+      <div style={{ marginTop: "100px" }} className="row ml-4">
+        <Button
+          onClick={() => {
+            dispatch({
+              type: "OPEN_FORM_CREATE_USER",
+              title: "Sign Up",
+              Component: <FormCreateUser />,
+            });
+          }}
+        >
+          Create User
+        </Button>
       </div>
-      <div className="row m-3">
-        <Table columns={columns} dataSource={data} />
+      <div className="row m-2">
+        <div className="col-12">
+          <Table
+            columns={columns}
+            dataSource={userData}
+            pagination={{
+              defaultPageSize: 6,
+              showSizeChanger: true,
+              pageSizeOptions: [6, 8, 10],
+            }}
+          />
+        </div>
       </div>
     </div>
   );

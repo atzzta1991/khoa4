@@ -20,6 +20,8 @@ export function* rootSaga() {
     UserCyberbugsSaga.watchAddUserProjectSaga(),
     UserCyberbugsSaga.watchRemoveUserProjectSaga(),
     UserCyberbugsSaga.watchGetUserByProjectIdSaga(),
+    UserCyberbugsSaga.watchSignupSaga(),
+    UserCyberbugsSaga.watchEditUserSaga(),
 
     ProjectCategorySaga.watchGetAllProjectCategory(),
     ProjectSaga.watchCreateProjectSaga(),

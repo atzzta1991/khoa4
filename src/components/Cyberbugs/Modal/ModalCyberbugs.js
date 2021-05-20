@@ -47,7 +47,6 @@ export default function ModalCyberbugs(props) {
     dispatch({ type: GET_ALL_COMMENTS_SAGA, taskId });
   }, [dispatch, taskDetailModal.taskId]);
 
-  console.log(lstComment);
   const handleChange = (e) => {
     const { name, value } = e.target;
     dispatch({

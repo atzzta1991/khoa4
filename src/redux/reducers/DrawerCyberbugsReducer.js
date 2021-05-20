@@ -35,6 +35,25 @@ export const DrawerCyberbugsReducer = (state = initialState, action) => {
     case "SET_SUBMIT_CREATE_TASK": {
       return { ...state, callBackSubmit: action.submitForm };
     }
+
+    case "OPEN_FORM_CREATE_USER": {
+      state.visible = true;
+      state.title = action.title;
+      state.ComponentContentDrawer = action.Component;
+      return { ...state };
+    }
+    case "OPEN_FORM_EDIT_USER": {
+      state.visible = true;
+      state.title = action.title;
+      state.ComponentContentDrawer = action.Component;
+      return { ...state };
+    }
+    case "SET_SUBMIT_CREATE_USER": {
+      return { ...state, callBackSubmit: action.submitForm };
+    }
+    case "SET_SUBMIT_EDIT_USER": {
+      return { ...state, callBackSubmit: action.submitForm };
+    }
     default:
       return { ...state };
   }

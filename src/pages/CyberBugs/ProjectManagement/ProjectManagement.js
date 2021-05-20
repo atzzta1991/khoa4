@@ -47,25 +47,25 @@ export default function ProjectManagement() {
     });
   };
 
-  const clearFilters = () => {
-    setState({ filteredInfo: null });
-  };
+  // const clearFilters = () => {
+  //   setState({ filteredInfo: null });
+  // };
 
-  const clearAll = () => {
-    setState({
-      filteredInfo: null,
-      sortedInfo: null,
-    });
-  };
+  // const clearAll = () => {
+  //   setState({
+  //     filteredInfo: null,
+  //     sortedInfo: null,
+  //   });
+  // };
 
-  const setAgeSort = () => {
-    setState({
-      sortedInfo: {
-        order: "descend",
-        columnKey: "age",
-      },
-    });
-  };
+  // const setAgeSort = () => {
+  //   setState({
+  //     sortedInfo: {
+  //       order: "descend",
+  //       columnKey: "age",
+  //     },
+  //   });
+  // };
 
   let { sortedInfo, filteredInfo } = state;
   sortedInfo = sortedInfo || {};

@@ -68,7 +68,7 @@ function* updateTaskStatusSaga(action) {
   const { taskUpdateStatus } = action;
   //console.log(taskUpdateStatus);
   try {
-    const { data, status } = yield call(
+    const { status } = yield call(
       taskService.updateStatusTask,
       taskUpdateStatus
     );

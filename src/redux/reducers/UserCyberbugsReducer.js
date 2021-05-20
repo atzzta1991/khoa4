@@ -1,6 +1,9 @@
 import { USER_LOGIN } from "../../utils/constants/systemSettings";
 import { US_LOGIN } from "../constants/Cyberbugs/Cyberbugs";
-import { GET_USER_BY_PROJECT_ID } from "../constants/Cyberbugs/UserConst";
+import {
+  EDIT_USER,
+  GET_USER_BY_PROJECT_ID,
+} from "../constants/Cyberbugs/UserConst";
 
 let usLogin = {};
 if (localStorage.getItem(USER_LOGIN)) {
@@ -11,6 +14,13 @@ const initialState = {
   userLogin: usLogin,
   userSearch: [],
   arrUser: [],
+  userEdit: {
+    id: "string",
+    passWord: "string",
+    email: "string",
+    name: "string",
+    phoneNumber: "string",
+  },
 };
 
 export const UserCyberbugsReducer = (state = initialState, action) => {
@@ -25,6 +35,11 @@ export const UserCyberbugsReducer = (state = initialState, action) => {
     }
     case GET_USER_BY_PROJECT_ID: {
       return { ...state, arrUser: action.arrUser };
+    }
+    case EDIT_USER: {
+      console.log(action);
+      state.userEdit = action.userEdit;
+      return { ...state };
     }
     default:
       return { ...state };

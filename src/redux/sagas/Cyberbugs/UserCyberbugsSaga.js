@@ -9,8 +9,11 @@ import {
 import { USER_SIGNIN_API, US_LOGIN } from "../../constants/Cyberbugs/Cyberbugs";
 import { DISPLAY_LOADING, HIDE_LOADING } from "../../constants/LoadingConst";
 import {
+  EDIT_USER_SAGA,
+  GET_USER_API,
   GET_USER_BY_PROJECT_ID,
   GET_USER_BY_PROJECT_ID_SAGA,
+  SIGNUP_SAGA,
 } from "../../constants/Cyberbugs/UserConst";
 
 function* signinSaga(action) {
@@ -49,6 +52,7 @@ export function* watchSignIn() {
 function* getUsersSaga(action) {
   try {
     const { data, status } = yield call(userService.getUsers, action.keyword);
+
     if (status === STATUS_CODE.SUCCESS) {
       yield put({
         type: "GET_USER_SEARCH",
@@ -61,7 +65,7 @@ function* getUsersSaga(action) {
 }
 
 export function* watchGetUsers() {
-  yield takeLatest("GET_USER_API", getUsersSaga);
+  yield takeLatest(GET_USER_API, getUsersSaga);
 }
 
 function* addUserProjectSaga(action) {
@@ -82,11 +86,7 @@ export function* watchAddUserProjectSaga() {
 
 function* removeUserProjectSaga(action) {
   try {
-    const { data } = yield call(
-      userService.removeUserProject,
-      action.userProject
-    );
-    console.log(data);
+    yield call(userService.removeUserProject, action.userProject);
 
     yield put({
       type: "GET_ALL_PROJECT_SAGA",
@@ -127,4 +127,48 @@ function* getUserByProjectIdSaga(action) {
 
 export function* watchGetUserByProjectIdSaga() {
   yield takeLatest(GET_USER_BY_PROJECT_ID_SAGA, getUserByProjectIdSaga);
+}
+
+function* signupSaga(action) {
+  const { newUser } = action;
+  try {
+    const { status } = yield call(userService.signup, newUser);
+    if (status === STATUS_CODE.SUCCESS) {
+      yield put({
+        type: GET_USER_API,
+        keyword: "",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    console.log(error.reponse?.data);
+  }
+}
+
+export function* watchSignupSaga() {
+  yield takeLatest(SIGNUP_SAGA, signupSaga);
+}
+
+function* editUserSaga(action) {
+  const { editedUser } = action;
+  try {
+    const { data, status } = yield call(userService.editUser, editedUser);
+    console.log(data);
+    if (status === STATUS_CODE.SUCCESS) {
+      yield put({
+        type: GET_USER_API,
+        keyword: "",
+      });
+      yield put({
+        type: "CLOSE_DRAWER",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    console.log(error.reponse?.data);
+  }
+}
+
+export function* watchEditUserSaga() {
+  yield takeLatest(EDIT_USER_SAGA, editUserSaga);
 }
