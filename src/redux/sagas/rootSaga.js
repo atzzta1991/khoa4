@@ -22,6 +22,7 @@ export function* rootSaga() {
     UserCyberbugsSaga.watchGetUserByProjectIdSaga(),
     UserCyberbugsSaga.watchSignupSaga(),
     UserCyberbugsSaga.watchEditUserSaga(),
+    UserCyberbugsSaga.watchDeleteUserSaga(),
 
     ProjectCategorySaga.watchGetAllProjectCategory(),
     ProjectSaga.watchCreateProjectSaga(),

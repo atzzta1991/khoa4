@@ -63,8 +63,11 @@ function FormEditUser(props) {
 }
 
 const formEditUser = withFormik({
+  enableReinitialize: true,
   mapPropsToValues: (props) => {
     const { userEdit } = props;
+
+    console.log("userEdit", userEdit);
     return {
       email: userEdit?.email,
       passWord: userEdit?.passWord,

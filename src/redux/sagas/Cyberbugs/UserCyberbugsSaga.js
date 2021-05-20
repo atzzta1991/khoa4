@@ -9,6 +9,7 @@ import {
 import { USER_SIGNIN_API, US_LOGIN } from "../../constants/Cyberbugs/Cyberbugs";
 import { DISPLAY_LOADING, HIDE_LOADING } from "../../constants/LoadingConst";
 import {
+  DELETE_USER_SAGA,
   EDIT_USER_SAGA,
   GET_USER_API,
   GET_USER_BY_PROJECT_ID,
@@ -138,6 +139,9 @@ function* signupSaga(action) {
         type: GET_USER_API,
         keyword: "",
       });
+      yield put({
+        type: "CLOSE_DRAWER",
+      });
     }
   } catch (error) {
     console.log(error);
@@ -171,4 +175,25 @@ function* editUserSaga(action) {
 
 export function* watchEditUserSaga() {
   yield takeLatest(EDIT_USER_SAGA, editUserSaga);
+}
+
+function* deleteUserSaga(action) {
+  const { id } = action;
+  try {
+    const { status } = yield call(userService.deleteUser, id);
+
+    if (status === STATUS_CODE.SUCCESS) {
+      yield put({
+        type: GET_USER_API,
+        keyword: "",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    console.log(error.reponse?.data);
+  }
+}
+
+export function* watchDeleteUserSaga() {
+  yield takeLatest(DELETE_USER_SAGA, deleteUserSaga);
 }

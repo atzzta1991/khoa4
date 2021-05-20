@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Input, Button, Space } from "antd";
+import { Table, Input, Button, Space, Popconfirm, message } from "antd";
 import Highlighter from "react-highlight-words";
 import {
   DeleteOutlined,
@@ -8,6 +8,7 @@ import {
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  DELETE_USER_SAGA,
   EDIT_USER,
   GET_USER_API,
 } from "../../redux/constants/Cyberbugs/UserConst";
@@ -37,7 +38,6 @@ export default function UserManagement() {
     };
   });
 
-  console.log(userData);
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({
       setSelectedKeys,
@@ -164,6 +164,11 @@ export default function UserManagement() {
       title: "Action",
       width: "15%",
       render: (text, record, index) => {
+        function confirm() {
+          dispatch({ type: DELETE_USER_SAGA, id: record.id });
+          message.success("Delete successfully");
+        }
+
         return (
           // Edit and Delete
           <Space size="middle">
@@ -188,7 +193,14 @@ export default function UserManagement() {
                 });
               }}
             />
-            <DeleteOutlined style={{ color: "red", cursor: "pointer" }} />
+            <Popconfirm
+              title="Are you sure to delete this user?"
+              onConfirm={confirm}
+              okText="Yes"
+              cancelText="No"
+            >
+              <DeleteOutlined style={{ color: "red", cursor: "pointer" }} />
+            </Popconfirm>
           </Space>
         );
       },

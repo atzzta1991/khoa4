@@ -1,10 +1,15 @@
 import { withFormik } from "formik";
-import { connect } from "react-redux";
-import React from "react";
+import { connect, useDispatch } from "react-redux";
+import React, { useEffect } from "react";
 import { SIGNUP_SAGA } from "../../../redux/constants/Cyberbugs/UserConst";
 
 function FormCreateUser(props) {
   const { handleChange, handleSubmit } = props;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({ type: "SET_SUBMIT_CREATE_USER", submitForm: handleSubmit });
+  }, [dispatch, handleSubmit]);
   return (
     <form className="container" onSubmit={handleSubmit}>
       <div className="form-group col-6 offset-3">
@@ -49,7 +54,6 @@ function FormCreateUser(props) {
           />
         </div>
       </div>
-      <button type="submit">Submit</button>
     </form>
   );
 }

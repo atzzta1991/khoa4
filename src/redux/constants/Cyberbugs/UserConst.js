@@ -7,3 +7,5 @@ export const SIGNUP_SAGA = "SIGNUP_SAGA";
 
 export const EDIT_USER = "EDIT_USER";
 export const EDIT_USER_SAGA = "EDIT_USER_SAGA";
+
+export const DELETE_USER_SAGA = "DELETE_USER_SAGA";
